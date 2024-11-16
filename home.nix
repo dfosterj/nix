@@ -13,9 +13,12 @@
 
   # Home Manager packages
   home.packages = with pkgs; [
-    vim
+    vim_configurable
     vimPlugins.vim-plug
     git
+    python3
+    python3Packages.pip
+    python3Packages.pynvim
   ];
 
 
@@ -42,7 +45,6 @@
      enable = true;
      userName = "David Foster";
      userEmail = "dfosterj@pm.me";
-     defaultBranch = "main";
    };
 
   # Coding
