@@ -12,3 +12,6 @@ keys/
 result/
 .cache/
 
+# hardware
+hardware-configuration.nix
+
