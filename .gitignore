@@ -1,0 +1,14 @@
+# Machine-specific state files
+*.lock
+*.swp
+*.bak
+*.tmp
+
+# Secrets (be careful with storing secrets in Git)
+secrets.nix
+keys/
+
+# Generated files
+result/
+.cache/
+
