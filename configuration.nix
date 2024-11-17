@@ -13,7 +13,7 @@
     [ 
 	./hardware-configuration.nix
         inputs.home-manager.nixosModules.default
-	./apps/vim
+#	./apps/vim
     ];
 
   networking.hostName = "dednix"; # Define your hostname.
@@ -95,18 +95,19 @@
   #sys pkgs
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-	flatpak
-	kitty
+    fd
+    flatpak
+    gh
+    gh-dash
     git
+    kitty
+    lazygit
+    nix-prefetch-github
     python3
     python3Packages.pip
     python3Packages.pynvim
     vimPlugins.vim-plug
     vim_configurable
-    nix-prefetch-github
-    lazygit
-    gh
-    gh-dash
   ];
 
 
