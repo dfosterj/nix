@@ -13,6 +13,7 @@
     [ 
 	./hardware-configuration.nix
         inputs.home-manager.nixosModules.default
+	./apps/vim
     ];
 
   networking.hostName = "dednix"; # Define your hostname.
@@ -94,11 +95,17 @@
   #sys pkgs
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-	vim
-    git
 	flatpak
 	kitty
+    git
+    python39
+    python39Packages.pip
+    python39Packages.pynvim
+    vimPlugins.vim-plug
+    vim_configurable
+    nix-prefetch-github
   ];
+
 
   # Enable Flatpak in the system and add the Flathub repository
   services.flatpak.enable = true;
