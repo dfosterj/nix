@@ -98,12 +98,15 @@
 	flatpak
 	kitty
     git
-    python39
-    python39Packages.pip
-    python39Packages.pynvim
+    python3
+    python3Packages.pip
+    python3Packages.pynvim
     vimPlugins.vim-plug
     vim_configurable
     nix-prefetch-github
+    lazygit
+    gh
+    gh-dash
   ];
 
 
