@@ -14,7 +14,7 @@
 	./hardware-configuration.nix
         inputs.home-manager.nixosModules.default
 	./apps/vim
-#	./apps/fish
+	./apps/fish
 	./apps/dev/c
     ];
 

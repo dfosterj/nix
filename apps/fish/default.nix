@@ -10,6 +10,7 @@ environment.systemPackages = with pkgs; [
   fishPlugins.hydro
   fishPlugins.grc
   grc
+  fzf
 ];
 
 programs.fish.enable = true;
