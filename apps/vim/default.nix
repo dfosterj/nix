@@ -5,99 +5,57 @@
   environment.variables = { EDITOR = "vim"; };
 
   environment.systemPackages = with pkgs; [
-    ((vimHugeX.override { }).customize {
-      name = "vim";
+    ((vim_configurable.override { }).customize {
+      name = "dedvim";
       # Install plugins for example for syntax highlighting of nix files
       vimrcConfig.packages.myplugins = with pkgs.vimPlugins; {
         start = [
-	  "CSApprox"
-	  "delimitMate"
-	  "fzf"
-	  "gruvbox"
-	  "indentLine"
-	  "jedi-vim"
-	  "molokai"
-	  "neocomplete"
-	  "nerdcommenter"
-	  "nerdtree"
-	  "papercolor-theme"
-	  "ruby-matchit"
-	  "rust.vim"
-	  "tabular"
-	  "tagbar"
-	  "ultisnips"
-	  "vim-airline"
-	  "vim-airline-themes"
-	  "vim-autoformat"
-	  "vim-code-dark"
-	  "vim-colors-solarized"
-	  "vim-commentary"
-	  "vim-csharp"
-	  "vim-endwise"
-	  "vim-floaterm"
-	  "vim-fugitive"
-	  "vim-markdown"
-	  "vim-misc"
-	  "vim-mucomplete"
-	  "vim-nix"
-	  "vim-polyglot"
-	  "vim-projectionist"
-	  "vim-racer"
-	  "vim-rails"
-	  "vim-rainbow"
-	  "vim-rake"
-	  "vim-rspec"
-	  "vim-scripts/c.vim"
-	  "vim-session"
-	  "vim-snippets"
-	  "vim-terraform"
-	  "vim-trailing-whitespace"
-	  "vim-yaml"
-	  "vimproc.vim"
-	  "vimshell.vim"
+	  #rust.vim
+	  CSApprox
+	  delimitMate
+	  fzf-vim
+	  gruvbox
+	  indentLine
+	  jedi-vim
+	  molokai
+	  neocomplete
+	  nerdcommenter
+	  nerdtree
+	  papercolor-theme
+	  rainbow
+	  tabular
+	  tagbar
+	  vim-airline
+	  vim-airline-themes
+	  vim-autoformat
+	  vim-code-dark
+	  vim-colors-solarized
+	  vim-commentary
+	  vim-csharp
+	  vim-endwise
+	  vim-floaterm
+	  vim-fugitive
+	  vim-markdown
+	  vim-misc
+	  vim-mucomplete
+	  vim-nix
+	  vim-polyglot
+	  vim-projectionist
+	  vim-racer
+	  vim-rails
+	  vim-snippets
+	  vim-terraform
+	  vim-trailing-whitespace
+	  vim-yaml
+	  vimproc
+	  vimshell
+          clang_complete
 	];
         opt = [];
       };
     # import .vimrc
   vimrcConfig.customRC = ''
-    if has('vim_starting')
-      set nocompatible
-    endif
-    
-    let g:vim_bootstrap_langs = "ruby,rust"
-    let g:vim_bootstrap_editor = "vim
-    
-    
-    let g:make = 'gmake'
-    if exists('make')
-            let g:make = 'make'
-    endif
-    
-    if v:version >= 703
-      Plug 'Shougo/vimshell.vim'
-    endif
-    
-    if v:version >= 704
-      "" Snippets
-      Plug 'SirVer/ultisnips'
-    endif
-    
-    
-    "" Color
-    
-    "*****************************************************************************
-    "*****************************************************************************
-    
-    "" Include user's extra bundle
-    if filereadable(expand("~/.vimrc.local.bundles"))
-      source ~/.vimrc.local.bundles
-    endif
-    
-    call plug#end()
-    
-    " Required:
     filetype plugin indent on
-    
     
     "*****************************************************************************
     "" Basic Setup
@@ -154,12 +112,6 @@
         set shell=/bin/sh
     endif
     
-    " session management
-    let g:session_directory = "~/.vim/session"
-    let g:session_autoload = "no"
-    let g:session_autosave = "no"
-    let g:session_command_aliases = 1
-    
     "*****************************************************************************
     "" Visual Settings
     "*****************************************************************************
@@ -167,12 +119,7 @@
     set ruler
     set number
     set nowrap
-    
     let no_buffers_menu=1
-    if !exists('g:not_finish_vimplug')
-      "colorscheme railscasts
-    endif
-    
     set mousemodel=popup
     set t_Co=256
     set guioptions=egmrti
@@ -271,13 +218,6 @@
     let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
     let g:vimshell_prompt =  '$ '
     
-    " terminal emulation
-    if g:vim_bootstrap_editor == 'nvim'
-      nnoremap <silent> <leader>sh :terminal<CR>
-    else
-      nnoremap <silent> <leader>sh :VimShellCreate<CR>
-    endif
-    
     "*****************************************************************************
     "" Functions
     "*****************************************************************************
@@ -337,11 +277,6 @@
     noremap <Leader>gd :Gvdiff<CR>
     noremap <Leader>gr :Gremove<CR>
     
-    " session management
-    nnoremap <leader>so :OpenSession<Space>
-    nnoremap <leader>ss :SaveSession<Space>
-    nnoremap <leader>sd :DeleteSession<CR>
-    nnoremap <leader>sc :CloseSession<CR>
     
     "" Tabs
     nnoremap <leader>tn :tabnew<CR>
@@ -358,6 +293,7 @@
     "" Opens a tab edit command with the path of the currently edited file filled
     noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
     
+
     "" fzf.vim
     set wildmode=list:longest,list:full
     set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
@@ -375,14 +311,6 @@
     cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
     nnoremap <silent> <leader>b :Buffers<CR>
     nnoremap <silent> <leader>e :FZF -m<CR>
-    
-    " snippets
-    let g:UltiSnipsExpandTrigger="<tab>"
-    let g:UltiSnipsJumpForwardTrigger="<tab>"
-    let g:UltiSnipsJumpBackwardTrigger="<c-b>"
-    let g:UltiSnipsEditSplit="vertical"
-    let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
-    noremap <Leader>ue :UltiSnipsEdit<CR>
     
     " Tagbar
     nmap <silent> <F4> :TagbarToggle<CR>
@@ -590,8 +518,7 @@
     """"""""""""""""""""""""""""""""""""""""
     " Colorscheme
     """"""""""""""""""""""""""""""""""""""""
-    colorscheme PaperColor
-    " colorscheme codedark
+    colorscheme codedark
     
     autocmd ColorScheme * highlight Normal
     " Define a variable for the background color
@@ -664,6 +591,7 @@
     
     " Map Shift+L to go to the next buffer
     nnoremap L :bnext<CR>
+
   '';
     }
   )];

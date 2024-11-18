@@ -13,7 +13,7 @@
     [ 
 	./hardware-configuration.nix
         inputs.home-manager.nixosModules.default
-#	./apps/vim
+	./apps/vim
     ];
 
   networking.hostName = "dednix"; # Define your hostname.
@@ -96,6 +96,10 @@
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     fd
+    fzf
+    eza
+    lsd
+    htop
     flatpak
     gh
     gh-dash
@@ -108,6 +112,7 @@
     python3Packages.pynvim
     vimPlugins.vim-plug
     vim_configurable
+    vscodium
   ];
 
 
