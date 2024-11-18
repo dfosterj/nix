@@ -14,6 +14,7 @@
 	./hardware-configuration.nix
         inputs.home-manager.nixosModules.default
 	./apps/vim
+	./apps/dev/c
     ];
 
   networking.hostName = "dednix"; # Define your hostname.
@@ -110,11 +111,26 @@
     python3
     python3Packages.pip
     python3Packages.pynvim
+    pyenv
     vimPlugins.vim-plug
     vim_configurable
     vscodium
   ];
 
+  fonts = {
+  enableDefaultPackages = true;
+  packages = with pkgs; [ 
+    fira-code-nerdfont
+   ];
+
+  fontconfig = {
+    defaultFonts = {
+      monospace = [ "Firacode Nerd Font" ];
+      serif = [ "Firacode Nerd Font" ];
+      sansSerif = [ "Firacode Nerd Font" ];
+      };
+    };
+  };
 
   # Enable Flatpak in the system and add the Flathub repository
   services.flatpak.enable = true;
@@ -138,4 +154,11 @@
       $FLATPAK install -y flathub com.brave.Browser
     fi
   '';
+
+    programs.bash = {
+    shellAliases = {
+      nt = "sudo nixos-rebuild test --flake /etc/nixos#default";
+      ns = "sudo nixos-rebuild switch --flake /etc/nixos#default";
+    };
+  };
 }
