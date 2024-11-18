@@ -6,7 +6,7 @@
 
   environment.systemPackages = with pkgs; [
     ((vim_configurable.override { }).customize {
-      name = "vim";
+      name = "dedvim";
       # Install plugins for example for syntax highlighting of nix files
       vimrcConfig.packages.myplugins = with pkgs.vimPlugins; {
         start = [
