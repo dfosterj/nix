@@ -4,13 +4,6 @@
 
 environment.systemPackages = with pkgs; [
   fish
-  fishPlugins.done
-  fishPlugins.fzf-fish
-  fishPlugins.forgit
-  fishPlugins.hydro
-  fishPlugins.grc
-  grc
-  fzf
 ];
 
 programs.fish.enable = true;
@@ -28,6 +21,8 @@ programs.bash = {
  programs.fish = {
     shellAliases = {
       vv = "dedvim -N -u ~/.vim/vimrc";
+      nt = "sudo nixos-rebuild test --flake /etc/nixos#default";
+      ns = "sudo nixos-rebuild switch --flake /etc/nixos#default";
     };
   };
 }

@@ -8,6 +8,7 @@
   programs.home-manager.enable = true;
   home.sessionVariables = {
      EDITOR = "vim";
+     VIMINIT = "source $HOME/.vim/vimrc";
   };
 
    programs.git = {
