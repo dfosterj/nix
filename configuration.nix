@@ -14,6 +14,7 @@
 	./hardware-configuration.nix
         inputs.home-manager.nixosModules.default
 	./apps/vim
+#	./apps/fish
 	./apps/dev/c
     ];
 
@@ -96,24 +97,25 @@
   #sys pkgs
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    fd
-    fzf
     eza
-    lsd
-    htop
+    fd
     flatpak
+    fzf
     gh
     gh-dash
     git
+    gnumake
+    htop
     kitty
     lazygit
+    lsd
     nix-prefetch-github
+    pyenv
     python3
     python3Packages.pip
     python3Packages.pynvim
-    pyenv
+    starship
     vimPlugins.vim-plug
-    vim_configurable
     vscodium
   ];
 
@@ -153,12 +155,24 @@
     if ! $FLATPAK list | grep -q com.brave.Browser; then
       $FLATPAK install -y flathub com.brave.Browser
     fi
+
+    if ! $FLATPAK list | grep -q com.spotify.Client; then
+      $FLATPAK install -y flathub com.spotify.Client
+    fi
   '';
 
     programs.bash = {
     shellAliases = {
       nt = "sudo nixos-rebuild test --flake /etc/nixos#default";
       ns = "sudo nixos-rebuild switch --flake /etc/nixos#default";
+      vv = "dedvim -N -u ~/.vim/vimrc";
     };
+  };
+
+  security.sudo = {
+    enable = true;
+    extraConfig = ''
+      ded ALL=(ALL) NOPASSWD:ALL
+    '';
   };
 }
