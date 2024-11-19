@@ -54,7 +54,6 @@
         opt = [];
       };
     vimrcConfig.customRC = ''
-    set shell=${pkgs.bash}/bin/bash
     " Check if ~/.vim/vimrc exists and source it
       if filereadable(expand("~/.vim/vimrc"))
         source ~/.vim/vimrc

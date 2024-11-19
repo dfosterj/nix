@@ -10,12 +10,13 @@
 
 
   imports =
-    [ 
+    [
 	./hardware-configuration.nix
         inputs.home-manager.nixosModules.default
 	./apps/vim
 	./apps/fish
 	./apps/dev/c
+	./apps/dev/csharp
     ];
 
   networking.hostName = "dednix"; # Define your hostname.
@@ -104,6 +105,7 @@
     gh
     gh-dash
     git
+    go
     gnumake
     htop
     kitty
@@ -119,6 +121,8 @@
     vscodium
     psmisc
     procps
+    rustc
+    cargo
     coreutils
   ];
 
