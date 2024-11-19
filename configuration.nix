@@ -117,12 +117,17 @@
     starship
     vimPlugins.vim-plug
     vscodium
+    psmisc
+    procps
+    coreutils
   ];
 
   fonts = {
   enableDefaultPackages = true;
-  packages = with pkgs; [ 
+  packages = with pkgs; [
     fira-code-nerdfont
+    jetbrains-mono
+    iosevka
    ];
 
   fontconfig = {
