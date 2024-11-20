@@ -8,15 +8,21 @@
   system.stateVersion = "24.05";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  # Bootloader.
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "/dev/sda";
+  boot.loader.grub.useOSProber = true;
+
 
   imports =
     [
 	./hardware-configuration.nix
-        inputs.home-manager.nixosModules.default
-	./apps/vim
-	./apps/fish
-	./apps/dev/c
-	./apps/dev/csharp
+    inputs.home-manager.nixosModules.default
+	./pkgs/vim
+	./pkgs/neovim
+	./pkgs/fish
+	./pkgs/dev/c
+	./pkgs/dev/csharp
     ];
 
   networking.hostName = "dednix"; # Define your hostname.
@@ -98,6 +104,7 @@
   #sys pkgs
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
+    coreutils
     eza
     fd
     flatpak
@@ -105,25 +112,18 @@
     gh
     gh-dash
     git
-    go
     gnumake
+    go
     htop
     kitty
     lazygit
     lsd
     nix-prefetch-github
-    pyenv
-    python3
-    python3Packages.pip
-    python3Packages.pynvim
+    procps
+    psmisc
     starship
     vimPlugins.vim-plug
     vscodium
-    psmisc
-    procps
-    rustc
-    cargo
-    coreutils
   ];
 
   fonts = {
@@ -184,4 +184,8 @@
       ded ALL=(ALL) NOPASSWD:ALL
     '';
   };
+
+  # stylix.enable = true;
+  # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/horizon-dark.yaml";
+  # stylix.image = /home/ded/Pictures/gbwp2.jpg;
 }

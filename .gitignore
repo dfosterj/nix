@@ -10,6 +10,7 @@ keys/
 
 # Generated files
 result/
+result
 .cache/
 
 # hardware

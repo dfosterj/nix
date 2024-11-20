@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/release-24.05";
+    # stylix.url  = "github:danth/stylix/cf8b6e2d4e8aca8ef14b839a906ab5eb98b08561";
 
     home-manager = {
     url = "github:nix-community/home-manager/release-24.05";
@@ -16,6 +17,7 @@
       modules = [
         ./configuration.nix
         inputs.home-manager.nixosModules.default
+        # stylix.nixosModules.stylix
       ];
     };
   };
