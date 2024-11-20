@@ -19,7 +19,6 @@
 	./hardware-configuration.nix
     inputs.home-manager.nixosModules.default
 	./pkgs/vim
-	./pkgs/neovim
 	./pkgs/fish
 	./pkgs/dev/c
 	./pkgs/dev/csharp
