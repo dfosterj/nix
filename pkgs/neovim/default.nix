@@ -4,6 +4,9 @@
 
   environment.systemPackages = with pkgs; [
     neovim
+    lua-language-server
+    stylua
+    ripgrep
   ];
 
   programs.neovim = {
@@ -16,7 +19,9 @@
         endif
       '';
       packages.myVimPackage = with pkgs.vimPlugins; {
-        start = [ lazy-nvim ];
+        start = [
+          lazy-nvim
+        ];
       };
     };
   };

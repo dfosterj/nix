@@ -23,6 +23,8 @@
 	./pkgs/fish
 	./pkgs/dev/c
 	./pkgs/dev/csharp
+	./pkgs/dev/python
+	./pkgs/dev/rust
     ];
 
   networking.hostName = "dednix"; # Define your hostname.
@@ -119,11 +121,13 @@
     lazygit
     lsd
     nix-prefetch-github
+    nodejs_22
     procps
     psmisc
     starship
     vimPlugins.vim-plug
     vscodium
+    unzip
   ];
 
   fonts = {
