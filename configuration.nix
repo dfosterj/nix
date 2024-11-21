@@ -34,6 +34,12 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  services.openssh.enable = true;
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 22 ];
+  };
+
   # Set your time zone.
   time.timeZone = "America/Chicago";
 
@@ -108,6 +114,7 @@
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     coreutils
+    cliphist
     eza
     fd
     flatpak
@@ -129,6 +136,11 @@
     vimPlugins.vim-plug
     vscodium
     unzip
+    waybar
+    swww
+    wofi
+    dunst
+    nwg-drawer
   ];
 
   fonts = {
@@ -190,7 +202,10 @@
     '';
   };
 
+  programs.hyprland.enable = true;
   # stylix.enable = true;
   # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/horizon-dark.yaml";
   # stylix.image = /home/ded/Pictures/gbwp2.jpg;
+
+
 }
