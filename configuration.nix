@@ -141,6 +141,8 @@
     wofi
     dunst
     nwg-drawer
+    neofetch
+    godot_4
   ];
 
   fonts = {
