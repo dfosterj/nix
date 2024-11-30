@@ -26,6 +26,8 @@
 	./pkgs/dev/python
 	./pkgs/dev/lua
 	./pkgs/dev/rust
+    ./pkgs/work
+	# ./pkgs/work/pulsevpn
     ];
 
   networking.hostName = "dednix"; # Define your hostname.
@@ -113,8 +115,9 @@
   #sys pkgs
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    coreutils
     cliphist
+    coreutils
+    dunst
     eza
     fd
     flatpak
@@ -124,25 +127,25 @@
     git
     gnumake
     go
+    godot_4
     htop
     kitty
     lazygit
     lsd
+    neofetch
     nix-prefetch-github
     nodejs_22
+    nwg-drawer
     procps
     psmisc
     starship
+    swww
+    unzip
     vimPlugins.vim-plug
     vscodium
-    unzip
     waybar
-    swww
     wofi
-    dunst
-    nwg-drawer
-    neofetch
-    godot_4
+    yazi
   ];
 
   fonts = {

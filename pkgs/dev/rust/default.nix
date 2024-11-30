@@ -2,8 +2,11 @@
 
 {
   environment.systemPackages = with pkgs; [
-    rustc
-    cargo
+    rustup
+    rust-analyzer
+    udev
+    alsa-lib
+    vulkan-loader
+    libxkbcommon
   ];
 }
-
